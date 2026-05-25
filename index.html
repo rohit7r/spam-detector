@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Spam Checker</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="workspace" aria-labelledby="page-title">
+        <div class="heading">
+          <div>
+            <p class="eyebrow">Local ML Scanner</p>
+            <h1 id="page-title">Spam Checker</h1>
+          </div>
+          <p class="summary">Paste a text message, email, or offer and get an instant spam risk check from your trained Naive Bayes model.</p>
+        </div>
+
+        <form id="predict-form" class="checker">
+          <div class="field-header">
+            <label class="field-label" for="message">Message or email text</label>
+            <span id="char-count">0 characters</span>
+          </div>
+          <textarea id="message" name="message" placeholder="Example: Congratulations, you won a free prize. Click now to claim."></textarea>
+
+          <div class="upload-row">
+            <label class="upload-box" for="screenshot">
+              <span class="upload-title">Attach screenshot</span>
+              <span class="upload-copy" id="file-name">OCR is optional. Text gives the best result.</span>
+              <input id="screenshot" name="screenshot" type="file" accept="image/png,image/jpeg,image/jpg">
+            </label>
+            <div class="button-row">
+              <button type="button" class="secondary-button" id="clear-button">Clear</button>
+              <button type="submit" id="predict-button">Check</button>
+            </div>
+          </div>
+
+          <div class="examples" aria-label="Example messages">
+            <button type="button" class="sample-button" data-message="Congratulations! You have won a free prize. Click this link now to claim your reward.">Spam sample</button>
+            <button type="button" class="sample-button" data-message="Hi, can you send me the class notes when you are free?">Safe sample</button>
+          </div>
+        </form>
+
+        <section id="result" class="result-panel idle" aria-live="polite">
+          <div class="result-status">
+            <span id="status-icon" aria-hidden="true">?</span>
+            <div>
+              <p class="result-kicker">Result</p>
+              <h2 id="result-title">Ready to check</h2>
+            </div>
+          </div>
+          <p id="result-detail">Paste a message and press Check. Keep the Python server window open while using this page.</p>
+
+          <div class="score-grid">
+            <div>
+              <span class="score-label">Spam risk</span>
+              <strong id="spam-score">--</strong>
+            </div>
+            <div>
+              <span class="score-label">Safe score</span>
+              <strong id="ham-score">--</strong>
+            </div>
+          </div>
+
+          <div class="meter-wrap">
+            <div class="meter-labels">
+              <span>Safe</span>
+              <span>Spam</span>
+            </div>
+            <div class="meter" aria-hidden="true">
+              <span id="spam-bar"></span>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+    <script src="/script.js"></script>
+  </body>
+</html>
